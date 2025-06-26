@@ -1,0 +1,3 @@
+Find the amount of cores you have by checking your "Logical Processors" in task manager. The video shows where you will see it.
+
+You can also just use the AnyCores one which will auto detect on launch but is more error prone.

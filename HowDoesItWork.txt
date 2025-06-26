@@ -1,0 +1,14 @@
+These scripts are designed to Disable Core 0 for:
+Medal and its encoder processes.
+OBS and it's encoder processes.
+Chrome
+Discord
+Spotify
+SteamWebHelper (the part of Steam that displays stuff, as Steam itself needs all cores enabled, otherwise games started by Steam will also have core 0 disabled, which gets rid of the point)
+SteamService (Manages random Steam stuff other than game launches so it should also be limited)
+EpicWebHelper (the part of Epic Games Launcher that displays stuff, Epic Games Launcher itself needs all cores enabled, otherwise games started by Epic Games Launcher will also have core 0 disabled, which gets rid of the point)
+MicrosoftEdgeUpdate (Microsoft forces this to run whether you like Edge or not, might as well at least make it not waste cpu)
+msedgewebview2 (Used for windows widgets and other web apps)
+TailScale (Local VPN thing I use, won't harm your PC if it doesn't see that task though)
+
+The script itself will run on the last core of your cpu, to make sure it also doesn't mess with core 0.
