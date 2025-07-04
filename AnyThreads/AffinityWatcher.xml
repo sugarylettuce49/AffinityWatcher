@@ -3,7 +3,7 @@
   <RegistrationInfo>
     <Date>2025-06-26T00:00:00</Date>
     <Author>YourName</Author>
-    <Description>Watches background apps and sets CPU affinity to exclude core 0</Description>
+    <Description>Watches background apps and sets CPU affinity to exclude thread/CPU 0 and 1</Description>
   </RegistrationInfo>
 
   <Triggers>

@@ -1,32 +1,27 @@
 # AffinityWatcher.ps1
-# Monitors running processes and disables Core 0 (auto-calculated affinity mask)
+# Monitors running processes and disables Core 0 and Core 1 (auto-calculated affinity mask)
 # Pins this script's own process to the last core available
 
 # Get logical processor count
 $logicalProcessors = [Environment]::ProcessorCount
 
-# Validate at least 2 cores
-if ($logicalProcessors -lt 2)
+# Validate at least 3 cores
+if ($logicalProcessors -lt 3)
 {
-    Write-Host "Not enough logical cores to apply affinity rules."
+    Write-Host "Not enough logical cores to apply affinity rules (need at least 3)."
     exit
 }
 
-# Set this script's own process affinity to the last core
+# Pin this script's own process to the last core
 $lastCoreMask = 1 -shl ($logicalProcessors - 1)
-(Get-Process -Id $PID).ProcessorAffinity = $lastCoreMask  # pin to last core
+(Get-Process -Id $PID).ProcessorAffinity = $lastCoreMask
 
-# Build affinity mask that disables core 0 (bit 0 = 0) and enables the rest (bits 1 to N)
+# Build affinity mask that disables Core 0 and Core 1
 $affinityMask = 0
-for ($i = 1; $i -lt $logicalProcessors; $i++)
+for ($i = 2; $i -lt $logicalProcessors; $i++)
 {
     $affinityMask = $affinityMask -bor (1 -shl $i)
 }
-
-# Debug output (optional)
-# Write-Host "Detected $logicalProcessors logical cores"
-# Write-Host "Affinity mask for target processes: $affinityMask"
-# Write-Host "Watcher script is pinned to core $($logicalProcessors)"
 
 $processNames = @(
     "Medal", 
@@ -37,11 +32,13 @@ $processNames = @(
     "chrome", 
     "Discord", 
     "Spotify", 
-    #"Steam", will make games use not enough cores
+    #"Steam", (Would make games not use core 0 also if added)
     "SteamWebHelper", 
     "SteamService", 
-    #"EpicGamesLauncher", will make games use not enough cores
+    #"EpicGamesLauncher", (Would make games not use core 0 also if added)
     "EpicWebHelper", 
+    #"EADesktop", (Would make games not use core 0 also if added)
+    "EACefSubProcess", 
     "MicrosoftEdgeUpdate", 
     "msedgewebview2", 
     "tailscaled"
@@ -53,7 +50,10 @@ while ($true)
     {
         Get-Process -Name $name -ErrorAction SilentlyContinue | ForEach-Object {
             try {
-                $_.ProcessorAffinity = $affinityMask
+                if ($_.ProcessorAffinity -ne $affinityMask)
+                {
+                    $_.ProcessorAffinity = $affinityMask
+                }
             } catch {}
         }
     }

@@ -1,6 +1,7 @@
 Find the amount of threads you have by checking your "Logical Processors" in task manager. The video shows where you will see it.
 
-You can also just use the AnyThreads which will auto detect on launch but is more error prone.
+
+The current version of this script includes only the AnyThreads folder, since it is now smarter.
 
 
 (I referred to Threads as Cores in the video for simplicities sake, this script actually works with threads, not cores.)
