@@ -1,6 +1,3 @@
-Find the amount of threads you have by checking your "Logical Processors" in task manager. The video shows where you will see it.
-
-
 The current version of this script includes only the AnyThreads folder, since it is now smarter.
 
 

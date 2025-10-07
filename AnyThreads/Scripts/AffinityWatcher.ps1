@@ -25,7 +25,8 @@ for ($i = 2; $i -lt $logicalProcessors; $i++)
 
 $processNames = @(
     "Medal", 
-    "MedalEncoder", 
+    "MedalEncoder",
+    "crashpad_handler", #Medals crashpad, probably applies to other apps too, but a crashpad is not gonna need to use your main cores. 
     "obs64", 
     "obs-ffmpeg-mux", 
     "ffmpeg-mux", 
@@ -41,7 +42,16 @@ $processNames = @(
     "EACefSubProcess", 
     "MicrosoftEdgeUpdate", 
     "msedgewebview2", 
-    "tailscaled"
+    "crossover", 
+    "x3", 
+    "VirtualDesktop.Service",
+    "sunshine",
+    "sunshinesvc",
+    "spoolsv",
+    "SearchIndexer",
+    "tailscaled",
+    "tailscale-ipn"
+    
 )
 
 while ($true)

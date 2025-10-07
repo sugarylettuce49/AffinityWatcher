@@ -10,6 +10,13 @@ EpicWebHelper (the part of Epic Games Launcher that displays stuff, Epic Games L
 EACefSubProcess (the part of EA App that displays stuff, EA App itself needs all threads enabled, otherwise games started by it will also have thread 0 and 1 disabled, which gets rid of the point)
 MicrosoftEdgeUpdate (Microsoft forces this to run whether you like Edge or not, might as well at least make it not waste cpu)
 msedgewebview2 (Used for windows widgets and other web apps)
-TailScale (Local VPN thing I use, won't harm your PC if it doesn't see that task though)
+crossover (custom crosshair app)
+x3 (mouse software for attackshark x3)
+Virtual Desktop (Over the air PC VR)
+Sunshine (remote desktop for gaming)
+Spoolsv (Windows Print services)
+SearchIndexer (Windows Search Indexing)
+TailScale (Local VPN thing I use)
 
-The script itself will run on the last thread of your cpu, to make sure it also doesn't mess with thread 0 and 1.
+The script itself will run only on the last thread of your cpu, to make sure it also doesn't mess with thread 0 and 1.
+If an app is not found in the list, the script will ignore it and move to the next item.
