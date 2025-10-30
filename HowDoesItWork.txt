@@ -18,5 +18,22 @@ Spoolsv (Windows Print services)
 SearchIndexer (Windows Search Indexing)
 TailScale (Local VPN thing I use)
 
-The script itself will run only on the last thread of your cpu, to make sure it also doesn't mess with thread 0 and 1.
+The script itself will also not mess with thread 0 and 1.
 If an app is not found in the list, the script will ignore it and move to the next item.
+
+There is a PowerShell version of the Script, and a Native exe. Here are the Pros/Cons
+
+PowerShell Pros:
+- This version of the script has existed for longer and is probably more stable.
+PowerShell Cons:
+- Uses a lot more memory
+- Higher CPU Usage
+
+Native Pros:
+- Much less memory usage
+- Much lower CPU Usage
+Native Cons:
+- Less testing done
+
+DON'T RUN BOTH THE NATIVE AND THE POWERSHELL VERSION AT THE SAME TIME!
+They're coded to do the same exact thing, running them both will either cause system instability or just provide no benefit whatsoever.

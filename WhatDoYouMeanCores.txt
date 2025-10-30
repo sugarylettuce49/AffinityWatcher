@@ -1,4 +1,4 @@
-The current version of this script includes only the AnyThreads folder, since it is now smarter.
+The current version of this script (both the PowerShell and Native Version) is adaptive, and will automatically know how to set affinity based on your thread count.
 
 
 (I referred to Threads as Cores in the video for simplicities sake, this script actually works with threads, not cores.)

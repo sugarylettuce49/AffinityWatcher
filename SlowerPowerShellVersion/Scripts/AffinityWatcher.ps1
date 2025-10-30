@@ -1,6 +1,6 @@
 # AffinityWatcher.ps1
 # Monitors running processes and disables Core 0 and Core 1 (auto-calculated affinity mask)
-# Pins this script's own process to the last core available
+# Pins this script's own process to use all threads except the first two
 
 # Get logical processor count
 $logicalProcessors = [Environment]::ProcessorCount
@@ -12,10 +12,6 @@ if ($logicalProcessors -lt 3)
     exit
 }
 
-# Pin this script's own process to the last core
-$lastCoreMask = 1 -shl ($logicalProcessors - 1)
-(Get-Process -Id $PID).ProcessorAffinity = $lastCoreMask
-
 # Build affinity mask that disables Core 0 and Core 1
 $affinityMask = 0
 for ($i = 2; $i -lt $logicalProcessors; $i++)
@@ -23,22 +19,27 @@ for ($i = 2; $i -lt $logicalProcessors; $i++)
     $affinityMask = $affinityMask -bor (1 -shl $i)
 }
 
+# Pin this script's own process to all cores except the first two
+$currentProcess = Get-Process -Id $PID
+$currentProcess.ProcessorAffinity = $affinityMask
+$currentProcess.PriorityClass = 'BelowNormal'
+
 $processNames = @(
     "Medal", 
     "MedalEncoder",
-    "crashpad_handler", #Medals crashpad, probably applies to other apps too, but a crashpad is not gonna need to use your main cores. 
+    "crashpad_handler",
     "obs64", 
     "obs-ffmpeg-mux", 
     "ffmpeg-mux", 
     "chrome", 
     "Discord", 
     "Spotify", 
-    #"Steam", (Would make games not use core 0 also if added)
+    #"Steam",
     "SteamWebHelper", 
     "SteamService", 
-    #"EpicGamesLauncher", (Would make games not use core 0 also if added)
+    #"EpicGamesLauncher",
     "EpicWebHelper", 
-    #"EADesktop", (Would make games not use core 0 also if added)
+    #"EADesktop",
     "EACefSubProcess", 
     "MicrosoftEdgeUpdate", 
     "msedgewebview2", 
@@ -51,14 +52,16 @@ $processNames = @(
     "SearchIndexer",
     "tailscaled",
     "tailscale-ipn"
-    
 )
 
 while ($true)
 {
+    # Get all processes once per loop instead of per process name
+    $allProcesses = Get-Process -ErrorAction SilentlyContinue
+    
     foreach ($name in $processNames)
     {
-        Get-Process -Name $name -ErrorAction SilentlyContinue | ForEach-Object {
+        $allProcesses | Where-Object {$_.Name -eq $name} | ForEach-Object {
             try {
                 if ($_.ProcessorAffinity -ne $affinityMask)
                 {
@@ -67,5 +70,6 @@ while ($true)
             } catch {}
         }
     }
-    Start-Sleep -Seconds 10
+    
+    Start-Sleep -Seconds 15
 }
