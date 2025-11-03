@@ -54,7 +54,6 @@ class AffinityWatcher
             "msedgewebview2",
             "crossover",
             "x3",
-            "VirtualDesktop.Service",
             "sunshine",
             "sunshinesvc",
             "spoolsv",
