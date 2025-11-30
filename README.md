@@ -6,3 +6,30 @@
 
 #### Below is a link to a video tutorial, if either the script or the video were helpful, I'd really appriciate you leaving a like on the video!
 [![Play!](https://img.youtube.com/vi/AJhbWn8LmY8/maxresdefault.jpg)](https://www.youtube.com/watch?v=AJhbWn8LmY8)
+
+
+___
+**New! (October 2025)**
+
+As well as the PowerShell version of the Script, there is now a new **Native exe version**.
+___
+
+**PowerShell Pros:**
+ - This version of the script has existed for longer and is probably
+   more stable.
+
+**PowerShell Cons:**
+ - Uses a lot ***more*** memory
+   ***Higher*** CPU Usage
+
+___
+
+**Native Pros:**
+- Much ***less*** memory usage
+- Much ***lower*** CPU Usage
+
+**Native Cons:**
+- Less testing done
+___
+
+DON'T RUN BOTH THE NATIVE AND THE POWERSHELL VERSION AT THE SAME TIME!
