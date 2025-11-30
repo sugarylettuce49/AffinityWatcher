@@ -1,12 +1,20 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
+using Microsoft.Win32;
 
 class AffinityWatcher
 {
     static void Main()
     {
+        // Check for settings file next to the executable
+        string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+        string exeDirectory = Path.GetDirectoryName(exePath);
+        string settingsPath = Path.Combine(exeDirectory, "MICAHTECHSETTINGS");
+        bool settingsFileExists = File.Exists(settingsPath);
+
         // Get logical processor count
         int logicalProcessors = Environment.ProcessorCount;
 
@@ -34,6 +42,23 @@ class AffinityWatcher
         }
         catch { }
 
+        // If settings file exists, set Win32PrioritySeparation to 40 (0x28)
+        /*if (settingsFileExists)
+        {
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(
+                    @"SYSTEM\CurrentControlSet\Control\PriorityControl", true))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("Win32PrioritySeparation", 40, RegistryValueKind.DWord);
+                    }
+                }
+            }
+            catch { }
+        }*/
+
         // Process names to monitor
         string[] processNames = new string[]
         {
@@ -59,8 +84,15 @@ class AffinityWatcher
             "spoolsv",
             "SearchIndexer",
             "tailscaled",
-            "tailscale-ipn"
+            "tailscale-ipn",
+            "netbird",
+            "netbird-ui",
+            "NVIDIA Broadcast",
+            "audiodg"
         };
+
+        // Determine sleep interval based on settings file
+        int sleepInterval = settingsFileExists ? 15000 : 15000; // 15 seconds
 
         // Main monitoring loop
         while (true)
@@ -100,7 +132,7 @@ class AffinityWatcher
             }
             catch { }
 
-            Thread.Sleep(15000); // 15 seconds
+            Thread.Sleep(sleepInterval);
         }
     }
 }
