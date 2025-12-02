@@ -17,23 +17,21 @@ Sunshine (remote desktop for gaming)
 Spoolsv (Windows Print services)
 SearchIndexer (Windows Search Indexing)
 TailScale (Local VPN thing I use)
+Netbird (Local VPN thing I use)
+Nvidia Broadcast (Real-time AI video and Audio filters)
+audiodg (Windows audio filter?)
+Greenshot (Screenshot Application)
+x360ce (Xbox 360 controller remapper-emulator)
 
 The script itself will also not mess with thread 0 and 1.
 If an app is not found in the list, the script will ignore it and move to the next item.
 
-There is a PowerShell version of the Script, and a Native exe. Here are the Pros/Cons
+The script will also set process priority to "Below Normal" for most of these apps.
 
-PowerShell Pros:
-- This version of the script has existed for longer and is probably more stable.
-PowerShell Cons:
-- Uses a lot more memory
-- Higher CPU Usage
+The script will create config files next to it, that you can edit, for example, to add apps that aren't listed here. Restart your pc for the new config to apply.
+More instructions are found within the config files.
 
-Native Pros:
-- Much less memory usage
-- Much lower CPU Usage
-Native Cons:
-- Less testing done
 
-DON'T RUN BOTH THE NATIVE AND THE POWERSHELL VERSION AT THE SAME TIME!
-They're coded to do the same exact thing, running them both will either cause system instability or just provide no benefit whatsoever.
+
+
+The PowerShell version of the script has been discontinued, and will no longer recieve updates, it will still be available for download. It is recommended to use the Native Version since it's proven to be stable, as well as providing much lower resource usage.
