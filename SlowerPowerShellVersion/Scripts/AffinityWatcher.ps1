@@ -51,7 +51,13 @@ $processNames = @(
     "spoolsv",
     "SearchIndexer",
     "tailscaled",
-    "tailscale-ipn"
+    "tailscale-ipn",
+    "netbird",
+    "netbird-ui",
+    "NVIDIA Broadcast",
+    "audiodg",
+    "Greenshot",
+    "x360ce"
 )
 
 while ($true)
