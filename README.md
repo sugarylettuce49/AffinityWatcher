@@ -12,7 +12,7 @@
 
 #### Below is a link to a video tutorial, if either the script or the video were helpful, I'd really appriciate you leaving a like on the video!
 
-[![Play!](https://img.youtube.com/vi/AJhbWn8LmY8/maxresdefault.jpg)](https://www.youtube.com/watch?v=AJhbWn8LmY8)
+[![Play!](https://img.youtube.com/vi/AJhbWn8LmY8/maxresdefault.jpg)](https://www.youtube.com/watch?v=nq4vY3g75Bo)
 
   
   
