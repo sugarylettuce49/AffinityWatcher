@@ -281,35 +281,38 @@ enablePriorityChanging=TRUE
 #   Spotify|P          (change priority only)
 #   obs64              (defaults to both)
 
+#Warning: Changing the priority can cause instability/lag in that process, especially when a game or other intensive process is running! Only use it on apps that need run in the background that you don't actually use often! Definitely DON'T run in on build in Windows processes! (except edgeupdate especially if you don't use edge, frick edge!)
+
 Medal|B
 MedalEncoder|A
 crashpad_handler|B
-obs64|B
-obs-ffmpeg-mux|B
-ffmpeg-mux|B
-chrome|B
-Discord|B
-Spotify|B
-SteamWebHelper|B
-SteamService|B
-EpicWebHelper|B
-EACefSubProcess|B
+obs64|A
+obs-ffmpeg-mux|A
+ffmpeg-mux|A
+chrome|A
+firefox|A
+Discord|A
+Spotify|A
+SteamWebHelper|A
+SteamService|A
+EpicWebHelper|A
+EACefSubProcess|A
 MicrosoftEdgeUpdate|B
-msedgewebview2|B
+msedgewebview2|A
 crossover|B
 x3|B
-sunshine|B
-sunshinesvc|B
+sunshinesvc|A
 spoolsv|B
 SearchIndexer|B
 tailscaled|B
 tailscale-ipn|B
-netbird|B
+netbird|A
 netbird-ui|B
-NVIDIA Broadcast|B
+NVIDIA Broadcast|A
 audiodg|A
 Greenshot|B
 x360ce|A
+tiworker|A
 ";
             File.WriteAllText(filterPath, defaultFilter);
         }

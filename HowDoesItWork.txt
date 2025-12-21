@@ -2,6 +2,7 @@ These scripts are designed to Disable Thread/CPU 0 and 1 for:
 Medal and its encoder processes.
 OBS and it's encoder processes.
 Chrome
+FireFox
 Discord
 Spotify
 SteamWebHelper (the part of Steam that displays stuff, as Steam itself needs all threads enabled, otherwise games started by it will also have thread 0 and 1 disabled, which gets rid of the point)
@@ -26,7 +27,7 @@ x360ce (Xbox 360 controller remapper-emulator)
 The script itself will also not mess with thread 0 and 1.
 If an app is not found in the list, the script will ignore it and move to the next item.
 
-The script will also set process priority to "Below Normal" for most of these apps.
+The script will also set process priority to "Below Normal" for some of these apps.
 
 The script will create config files next to it, that you can edit, for example, to add apps that aren't listed here. Restart your pc for the new config to apply.
 More instructions are found within the config files.
